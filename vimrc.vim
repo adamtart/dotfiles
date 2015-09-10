@@ -1,6 +1,9 @@
 " Use Vim mode instead of Vi mode.
 set nocompatible
 
+" Don't show intro message when starting Vim
+set shortmess=atI
+
 " Standard file types
 set fileformats=unix,dos,mac
 
