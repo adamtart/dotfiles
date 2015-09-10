@@ -34,22 +34,22 @@ fi
 
 # Define some colors:
 yellow='\e[0;33m'
-red='\e[0;31m'
-blue='\e[0;34m'
-cyan='\e[0;36m'
+light_red='\e[0;91m'
+light_blue='\e[0;94m'
+light_cyan='\e[0;96m'
 NC='\e[0m'  # No color
 alias datemtv="env TZ=America/Los_Angeles date"
 
 if [[ "${DISPLAY%%:0*}" != "" ]]; then
-  HILIT=${red}   # remote machine: prompt will be partly red
+  HILIT=${light_red}   # remote machine: prompt will be partly light_red
 else
-  HILIT=${cyan}  # local machine: prompt will be partly cyan
+  HILIT=${light_cyan}  # local machine: prompt will be partly light_cyan
 fi
 
 # Display 'whoami@hostname' before a standard prompt.
 PS1="\n${yellow}$(echo -n '[ `datemtv` ]')\n\
 ${HILIT}$(echo -n '`whoami`@`hostname -s`')\[\$(tput sgr0)\]\n\
-${blue}\${PWD}${NC}\n\$ "
+${light_blue}\${PWD}${NC}\n\$ "
 export PS1
 
 
