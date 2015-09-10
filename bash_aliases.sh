@@ -6,3 +6,4 @@ alias vim="vim -X"
 alias cdh="cd ~"
 alias u="history -n" # re-read history from other shells
 alias which='type -all' # better which
+alias gitpull='git pull origin master'

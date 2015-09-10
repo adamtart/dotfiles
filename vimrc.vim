@@ -118,6 +118,7 @@ set statusline=%F%m%r%h%w\ [%{&ff}]%y\ (%p%%\ of\ %L)[l=%l,c=%v]
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
 set showcmd " show command being typed
+set showmode " show current mode
 
 " No annoying sound on errors
 set noerrorbells
