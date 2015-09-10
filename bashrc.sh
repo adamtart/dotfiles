@@ -57,15 +57,10 @@ export PS1
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
     eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 fi
-
-export CLICOLOR=1
-#export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
-export LSCOLORS=Exfxcxdxbxegedabagacad
 
 # Enable color support in man pages
 man() {
