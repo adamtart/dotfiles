@@ -11,8 +11,18 @@ set fileformats=unix,dos,mac
 " asking if you wish to save changed files.
 set confirm
 
+
+"==================================
+" Mappings
+"==================================
 " remap ; to : so commond mode can be entered by typing ;
 nore ; :
+" Use "," as mapleader (easier to reach than "\")
+let mapleader = ","
+let g:mapleader = ","
+
+" Toggle paste mode on and off
+map <leader>p :setlocal paste!<cr>
 
 
 "==================================
