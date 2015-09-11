@@ -11,6 +11,25 @@ set fileformats=unix,dos,mac
 " asking if you wish to save changed files.
 set confirm
 
+" Keep longer history
+set history=1000
+
+" Save undos across sesssions
+if has('persistent_undo')
+  " Create undodir if it does not exist.
+  if !isdirectory(expand('~').'/.vim/undodir')
+    silent !mkdir -p ~/.vim/undodir > /dev/null 2>&1
+  endif
+  " Save undos after file closes
+  set undofile
+  " Save undo files to central directory
+  set undodir=~/.vim/undodir
+  " Maximum number of undos to save
+  set undolevels=1000
+  " Maximum number of lines to save for undo on buffer reload
+  set undoreload=10000
+endif
+
 
 "==================================
 " Mappings
@@ -21,8 +40,14 @@ nore ; :
 let mapleader = ","
 let g:mapleader = ","
 
+" Set timeout on key combinations to shorter than default of 1s.
+set timeoutlen=300
+
 " Toggle paste mode on and off
 map <leader>p :setlocal paste!<cr>
+
+" Extend % key to match brackets, if/else, HTML/XML tags, etc.
+runtime macros/matchit.vim
 
 
 "==================================
@@ -63,6 +88,11 @@ set formatoptions=tcrql         " t - autowrap to textwidth
 set formatoptions+=n
 " And bullets, too
 set formatlistpat=^\\s*\\(\\d\\\|[-*]\\)\\+[\\]:.)}\\t\ ]\\s*
+
+" Catch trailing whitespace, but don't show it by default. Instead, enable
+" toggling by pressing ,s
+set listchars=tab:»·,trail:·,eol:$
+nmap <silent> <leader>s :set nolist!<CR>
 
 
 "==================================

@@ -4,6 +4,8 @@
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+export EDITOR=/usr/bin/vim
+
 # ignore commands with leading spaces, and duplicate commands
 export HISTCONTROL=ignoreboth
 # big history and file size
@@ -14,9 +16,13 @@ shopt -s histappend
 # append to history after each command finishes
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+# check window size after each command and, if necessary,
+# update the values of LINES and COLUMNS
+shopt -s checkwinsize
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-  xterm-color) color_prompt=yes;;
+  xterm-color|screen) color_prompt=yes;;
 esac
 
 force_color_prompt=yes
