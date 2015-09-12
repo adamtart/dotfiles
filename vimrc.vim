@@ -63,6 +63,10 @@ map <leader>p :setlocal paste!<cr>
 " Extend % key to match brackets, if/else, HTML/XML tags, etc.
 runtime macros/matchit.vim
 
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
 
 "==================================
 " Formatting

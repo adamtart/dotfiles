@@ -69,6 +69,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Enable color support in man pages
+# https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
 man() {
   env LESS_TERMCAP_mb=$'\E[01;31m' \
   LESS_TERMCAP_md=$'\E[01;38;5;74m' \
@@ -80,8 +81,11 @@ man() {
   man "$@"
 }
 
+# ============================================================================
+# Functions from https://github.com/cowboy/dotfiles
+# ============================================================================
+
 # OS detection
-# From https://github.com/cowboy/dotfiles
 function is_osx() {
   [[ "$OSTYPE" =~ ^darwin ]] || return 1
 }
@@ -93,6 +97,10 @@ function get_os() {
     is_$os; [[ $? == ${1:-0} ]] && echo $os
   done
 }
+
+# ============================================================================
+# Functions from http://natelandau.com/my-mac-osx-bash_profile/
+# ============================================================================
 
 # Move a file to the MacOS trash
 if is_osx; then
@@ -135,8 +143,11 @@ extract () {
   fi
 }
 
+# ============================================================================
+# Functions from https://github.com/mathiasbynens/dotfiles
+# ============================================================================
+
 # Start an HTTP server from a directory, optionally specifying the port
-# Courtesy of mathiasbynens
 function server() {
   local port="${1:-8000}";
   sleep 1 && open "http://localhost:${port}/" &
@@ -146,6 +157,36 @@ function server() {
   python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
 
+# Simple calculator
+function calc() {
+  local result="";
+  result="$(printf "scale=10;$*\n" | bc --mathlib | tr -d '\\\n')";
+  #                       └─ default (when `--mathlib` is used) is 20
+  #
+  if [[ "$result" == *.* ]]; then
+    # improve the output for decimal numbers
+    printf "$result" |
+    sed -e 's/^\./0./'        `# add "0" for cases like ".5"` \
+        -e 's/^-\./-0./'      `# add "0" for cases like "-.5"`\
+        -e 's/0*$//;s/\.$//';  # remove trailing zeros
+  else
+    printf "$result";
+  fi;
+  printf "\n";
+}
+
+# Create a data URL from a file
+function dataurl() {
+  local mimeType=$(file -b --mime-type "$1");
+  if [[ $mimeType == text/* ]]; then
+    mimeType="${mimeType};charset=utf-8";
+  fi
+  echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
+}
+
+# ============================================================================
+# Etc.
+# ============================================================================
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
