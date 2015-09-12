@@ -80,8 +80,24 @@ man() {
   man "$@"
 }
 
+# OS detection
+# From https://github.com/cowboy/dotfiles
+function is_osx() {
+  [[ "$OSTYPE" =~ ^darwin ]] || return 1
+}
+function is_ubuntu() {
+  [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1
+}
+function get_os() {
+  for os in osx ubuntu; do
+    is_$os; [[ $? == ${1:-0} ]] && echo $os
+  done
+}
+
 # Move a file to the MacOS trash
-trash() { command mv "$@" ~/.Trash ; }
+if is_osx; then
+  trash() { command mv "$@" ~/.Trash ; }
+fi
 
 # qfind:    Quickly search for file
 alias qfind="find . -name "
@@ -94,21 +110,24 @@ ffe () { /usr/bin/find . -name '*'"$@" ; }
 
 
 # extract:  Extract most know archives with one command
+# Usage: extract <file>
 # ---------------------------------------------------------
 extract () {
   if [ -f $1 ] ; then
     case $1 in
-      *.tar.bz2)   tar xjf $1     ;;
-      *.tar.gz)    tar xzf $1     ;;
-      *.bz2)       bunzip2 $1     ;;
-      *.rar)       unrar e $1     ;;
-      *.gz)        gunzip $1      ;;
-      *.tar)       tar xf $1      ;;
-      *.tbz2)      tar xjf $1     ;;
-      *.tgz)       tar xzf $1     ;;
-      *.zip)       unzip $1       ;;
-      *.Z)         uncompress $1  ;;
-      *.7z)        7z x $1        ;;
+      *.tar.bz2)   tar xjf $1        ;;
+      *.tar.gz)    tar xzf $1        ;;
+      *.bz2)       bunzip2 $1        ;;
+      *.dmg)       hdiutil mount $1  ;;
+      *.rar)       unrar e $1        ;;
+      *.gz)        gunzip $1         ;;
+      *.tar)       tar xf $1         ;;
+      *.tbz2)      tar xjf $1        ;;
+      *.tgz)       tar xzf $1        ;;
+      *.zip)       unzip $1          ;;
+      *.ZIP)       unzip $1          ;;
+      *.Z)         uncompress $1     ;;
+      *.7z)        7z x $1           ;;
       *)           echo "'$1' cannot be extracted via extract()" ;;
     esac
   else

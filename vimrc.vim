@@ -30,6 +30,20 @@ if has('persistent_undo')
   set undoreload=10000
 endif
 
+" Centralize backups
+" Create backupdir if it does not exist
+if !isdirectory(expand('~').'/.vim/backups')
+  silent !mkdir -p ~/.vim/backups > /dev/null 2>&1
+endif
+set backupdir=~/.vim/backups
+
+" Centralize swapfiles
+" Create backupdir if it does not exist
+if !isdirectory(expand('~').'/.vim/swaps')
+  silent !mkdir -p ~/.vim/swaps > /dev/null 2>&1
+endif
+set directory=~/.vim/swaps
+
 
 "==================================
 " Mappings
@@ -61,6 +75,8 @@ syntax on
 filetype on
 filetype plugin indent on
 
+" Recognize .md files as markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Indentation and tabs
 set autoindent
