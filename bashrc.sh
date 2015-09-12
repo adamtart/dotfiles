@@ -28,7 +28,7 @@ light_cyan='\e[0;96m'
 NC='\e[0m'  # No color
 alias datemtv="env TZ=America/Los_Angeles date"
 
-if [[ "${DISPLAY%%:0*}" != "" ]]; then
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   HILIT=${light_red}   # remote machine: prompt will be partly light_red
 else
   HILIT=${light_cyan}  # local machine: prompt will be partly light_cyan
