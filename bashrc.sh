@@ -20,24 +20,6 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # update the values of LINES and COLUMNS
 shopt -s checkwinsize
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-  xterm-color|screen) color_prompt=yes;;
-esac
-
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
-  else
-    color_prompt=
-  fi
-fi
-
 # Define some colors:
 yellow='\e[0;33m'
 light_red='\e[0;91m'
@@ -57,16 +39,6 @@ PS1="\n${yellow}$(echo -n '[ `datemtv` ]')\n\
 ${HILIT}$(echo -n '`whoami`@`hostname -s`')\[\$(tput sgr0)\]\n\
 ${light_blue}\${PWD}${NC}\n\$ "
 export PS1
-
-
-# Enable color support of some common commands
-if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || \
-    eval "$(dircolors -b)"
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
-fi
 
 # Enable color support in man pages
 # https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
