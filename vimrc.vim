@@ -85,6 +85,9 @@ vmap <down> gj
 vmap k gk
 vmap j gj
 
+" ,a selects all text in buffer
+nnoremap <leader>a ggVG
+
 "==================================
 " Formatting
 "==================================
