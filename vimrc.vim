@@ -58,15 +58,32 @@ let g:mapleader = ","
 set timeoutlen=300
 
 " Toggle paste mode on and off
-map <leader>p :setlocal paste!<cr>
+set pastetoggle=<leader>p
 
 " Extend % key to match brackets, if/else, HTML/XML tags, etc.
 runtime macros/matchit.vim
 
+" Toggle highlight of current row/column
 :hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 :hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 :nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
+" Use Q for formatting the current paragraph (or visual selection)
+vmap Q gq
+nmap Q gqap
+
+" Cursor keys move by visual lines, i.e., for long lines that wrap, moving up or
+" down will go to the next visual line (row in editor) instead of line number.
+imap <up> <C-O>gk
+imap <down> <C-O>gj
+nmap <up> gk
+nmap <down> gj
+nmap k gk
+nmap j gj
+vmap <up> gk
+vmap <down> gj
+vmap k gk
+vmap j gj
 
 "==================================
 " Formatting
