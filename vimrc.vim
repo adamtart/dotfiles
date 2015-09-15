@@ -88,6 +88,9 @@ vmap j gj
 " ,a selects all text in buffer
 nnoremap <leader>a ggVG
 
+" ,n toggles line numbers
+nnoremap <leader>n :setlocal number!<CR>
+
 "==================================
 " Formatting
 "==================================
