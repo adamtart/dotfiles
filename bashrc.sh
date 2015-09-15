@@ -25,6 +25,7 @@ yellow='\e[0;33m'
 light_red='\e[0;91m'
 light_blue='\e[0;94m'
 light_cyan='\e[0;96m'
+light_magenta='\e[0;95m'
 NC='\e[0m'  # No color
 alias datemtv="env TZ=America/Los_Angeles date"
 
@@ -159,6 +160,10 @@ function dataurl() {
 # ============================================================================
 # Etc.
 # ============================================================================
+# Print current timestamp just before command is executed.
+# See bash-preexec.sh. Credit to https://github.com/rcaloras/bash-preexec .
+preexec() { printf "${light_magenta}[ `datemtv` ]${NC}\n"; }
+
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi

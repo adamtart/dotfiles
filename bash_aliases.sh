@@ -32,6 +32,11 @@ alias fgrep="fgrep --color=auto"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 if is_osx; then
   alias localip="ipconfig getifaddr en0"
+else
+  function localip {
+    ifconfig | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}' \
+      | grep -v "127.0.0.1";
+  }
 fi
 
 alias mkdir='mkdir -pv' # -p=intermediate dirs, -v=verbose
