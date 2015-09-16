@@ -167,3 +167,7 @@ preexec() { printf "${light_magenta}[ `datemtv` ]${NC}\n"; }
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
+
+if [ -f ~/src/dotfiles/bash-preexec.sh ]; then
+  . ~/src/dotfiles/bash-preexec.sh
+fi
