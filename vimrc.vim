@@ -30,6 +30,10 @@ if has('persistent_undo')
   set undoreload=10000
 endif
 
+if filereadable('/usr/share/dict/words')
+	set dictionary=/usr/share/dict/words
+endif
+
 " Centralize backups
 " Create backupdir if it does not exist
 if !isdirectory(expand('~').'/.vim/backups')
@@ -175,6 +179,8 @@ set smartcase " if there are caps, go case-sensitive
 " UI
 "==================================
 
+" Set color of Pmenu (popup menu, e.g. word completion) to grey
+highlight Pmenu ctermbg=238
 " Display line numbers on the left
 set number
 " Set line numbers to grey color

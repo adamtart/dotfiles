@@ -22,6 +22,7 @@ shopt -s checkwinsize
 
 # Define some colors:
 yellow='\e[0;33m'
+green='\e[0;32m'
 light_red='\e[0;91m'
 light_blue='\e[0;94m'
 light_cyan='\e[0;96m'
@@ -162,7 +163,7 @@ function dataurl() {
 # ============================================================================
 # Print current timestamp just before command is executed.
 # See bash-preexec.sh. Credit to https://github.com/rcaloras/bash-preexec .
-preexec() { printf "${light_magenta}[ `datemtv` ]${NC}\n"; }
+preexec() { printf "${green}[ `datemtv` ]${NC}\n"; }
 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
