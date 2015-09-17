@@ -217,7 +217,7 @@ highlight Pmenu ctermbg=238
 " Display line numbers on the left
 set number
 " Set line numbers to grey color
-highlight LineNr ctermfg=240
+highlight LineNr ctermfg=LightGrey ctermbg=DarkGrey
 " Set default number of columns reserved for line numbers to 5. One column is
 " used for space between line numbers and text, so this leaves 4 columns for
 " line numbers, allowing for up to 9999 lines without resizing.
