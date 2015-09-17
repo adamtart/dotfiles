@@ -31,7 +31,7 @@ if has('persistent_undo')
 endif
 
 if filereadable('/usr/share/dict/words')
-	set dictionary=/usr/share/dict/words
+  set dictionary=/usr/share/dict/words
 endif
 
 " Centralize backups
@@ -100,6 +100,9 @@ nnoremap <leader>rc :source ~/.vimrc<CR>
 
 " ,s sorts selection
 vnoremap <leader>s :sort<CR>
+
+" ,h toggles highlighting of searches
+nnoremap <leader>h :set hlsearch! hlsearch?<CR>
 
 " Windows/splits:
 " From http://flaviusim.com/blog/resizing-vim-window-splits-like-a-boss/
@@ -204,8 +207,8 @@ set smartcase " if there are caps, go case-sensitive
 if exists('+colorcolumn')
   let &colorcolumn="80,".join(range(120,999),",")
 else
-	" Fallback for Vim < v7.3
-	autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+  " Fallback for Vim < v7.3
+  autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
