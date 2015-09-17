@@ -95,6 +95,26 @@ nnoremap <leader>a ggVG
 " ,n toggles line numbers
 nnoremap <leader>n :setlocal number!<CR>
 
+" ,rc reloads ~/.vimrc
+nnoremap <leader>rc :source ~/.vimrc<CR>
+
+" ,s sorts selection
+vnoremap <leader>s :sort<CR>
+
+" Windows/splits:
+" From http://flaviusim.com/blog/resizing-vim-window-splits-like-a-boss/
+"set winwidth=80
+"set winminwidth=30
+"set winheight=30
+"set winminheight=5
+nnoremap <silent> _ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+
 "==================================
 " Formatting
 "==================================
@@ -178,6 +198,16 @@ set smartcase " if there are caps, go case-sensitive
 "==================================
 " UI
 "==================================
+
+" Highlight column 80 and 120+
+" From https://github.com/justinforce
+if exists('+colorcolumn')
+  let &colorcolumn="80,".join(range(120,999),",")
+else
+	" Fallback for Vim < v7.3
+	autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 " Set color of Pmenu (popup menu, e.g. word completion) to grey
 highlight Pmenu ctermbg=238
