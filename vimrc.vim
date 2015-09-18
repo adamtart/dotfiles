@@ -205,7 +205,10 @@ set smartcase " if there are caps, go case-sensitive
 " Highlight column 80 and 120+
 " From https://github.com/justinforce
 if exists('+colorcolumn')
-  let &colorcolumn="80,".join(range(120,999),",")
+  " Highlight column 80 and 120+
+  "let &colorcolumn="80,".join(range(120,999),",")
+  " Highlight column 80
+  let &colorcolumn="80"
 else
   " Fallback for Vim < v7.3
   autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -217,7 +220,8 @@ highlight Pmenu ctermbg=238
 " Display line numbers on the left
 set number
 " Set line numbers to grey color
-highlight LineNr ctermfg=LightGrey ctermbg=DarkGrey
+"highlight LineNr ctermfg=LightGrey ctermbg=DarkGrey
+highlight LineNr ctermfg=LightGrey ctermbg=235
 " Set default number of columns reserved for line numbers to 5. One column is
 " used for space between line numbers and text, so this leaves 4 columns for
 " line numbers, allowing for up to 9999 lines without resizing.
