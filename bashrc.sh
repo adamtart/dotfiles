@@ -161,14 +161,6 @@ function dataurl() {
 # ============================================================================
 # Etc.
 # ============================================================================
-# Print current timestamp just before command is executed.
-# See bash-preexec.sh. Credit to https://github.com/rcaloras/bash-preexec .
-preexec() { printf "${green}[ `datemtv` ]${NC}\n"; }
-
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
-fi
-
-if [ -f ~/src/dotfiles/bash-preexec.sh ]; then
-  . ~/src/dotfiles/bash-preexec.sh
 fi
