@@ -220,8 +220,13 @@ highlight Pmenu ctermbg=238
 " Display line numbers on the left
 set number
 " Set line numbers to grey color
-"highlight LineNr ctermfg=LightGrey ctermbg=DarkGrey
-highlight LineNr ctermfg=LightGrey ctermbg=235
+" TODO(adamtart): Why will 235 not work for Linux?
+if has("mac") || has("macunix")
+  highlight LineNr ctermfg=LightGrey ctermbg=235
+elseif has("unix")
+  highlight LineNr ctermfg=LightGrey ctermbg=DarkGrey
+endif
+
 " Set default number of columns reserved for line numbers to 5. One column is
 " used for space between line numbers and text, so this leaves 4 columns for
 " line numbers, allowing for up to 9999 lines without resizing.
